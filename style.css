@@ -174,15 +174,18 @@ section .title::after {
 	margin-right: 0;
 }
 .home .home-content .text-1 {
-	font-size: 27px;color: #03a9f4;
+	font-size: 27px;
+	color: #36e484;
 }
 .home .home-content .text-2 {
 	font-size: 75px;
-	font-weight: 600;color: #03a9f4;
+	font-weight: 600;
+	color: #36e484;
 	margin-left: -3px;
 }
 .home .home-content .text-3 {
-	font-size: 40px;color: #03a9f4;
+	font-size: 40px;
+	color: #36e484;
 	margin: 5px 0;
 }
 .home .home-content .text-3 span {
