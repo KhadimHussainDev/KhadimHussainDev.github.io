@@ -1,5 +1,4 @@
 var srNo = 0;
-var srNo = 0;
 function addDataToTable(name, email, subject, read, message, id) {
 	var table = document.getElementById("myTable");
 	var row = table.insertRow(-1);
