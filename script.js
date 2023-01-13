@@ -1,4 +1,5 @@
-$(document).ready(function () {
+// $(document).ready(function () {
+window.addEventListener("load", function () {
 	$(window).scroll(function () {
 		// sticky navbar on scroll script code
 		if (this.scrollY > 20) {
@@ -48,6 +49,7 @@ $(document).ready(function () {
 		loop: true,
 	});
 });
+	// });
 
 // <------------------------Linking With DataBase--------------------------->
 
@@ -112,7 +114,7 @@ async function addDataToDatabase(name, email, subject, message) {
 		email: email,
 		subject: subject,
 		message: message,
-		read:false,
+		read: false,
 	})
 		.then(() => {
 			alert("store");
