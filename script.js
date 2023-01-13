@@ -1,5 +1,4 @@
-// $(document).ready(function () {
-window.addEventListener("load", function () {
+$(document).ready(function () {
 	$(window).scroll(function () {
 		// sticky navbar on scroll script code
 		if (this.scrollY > 20) {
@@ -49,7 +48,6 @@ window.addEventListener("load", function () {
 		loop: true,
 	});
 });
-	// });
 
 // <------------------------Linking With DataBase--------------------------->
 
