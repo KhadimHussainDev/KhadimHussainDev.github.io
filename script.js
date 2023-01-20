@@ -115,7 +115,7 @@ async function addDataToDatabase(name, email, subject, message) {
 		read: false,
 	})
 		.then(() => {
-			alert("store");
+			
 		})
 		.catch((err) => {
 			alert(err);
