@@ -34,19 +34,17 @@ $(document).ready(function () {
 	});
 
 	// typing text animation script code
-	var typed = new Typed(".typing", {
-		strings: ["Computer Scientist", "Web Developer", "JS Game Developer"],
+function initializeTyped(selector) {
+	new Typed(selector, {
+		strings: ["Computer Scientist", ".NET Developer", "Backend Web Developer"],
 		typeSpeed: 100,
 		backSpeed: 60,
 		loop: true,
 	});
+}
 
-	var typed = new Typed(".typing-2", {
-		strings: ["Computer Scientist", "Web Developer", "JS Game Developer"],
-		typeSpeed: 100,
-		backSpeed: 60,
-		loop: true,
-	});
+initializeTyped(".typing");
+initializeTyped(".typing-2");
 });
 
 // <------------------------Linking With DataBase--------------------------->
@@ -81,30 +79,56 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 const db = getFirestore();
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("IIIqPNpqVgb85DdF1"); // Replace with your EmailJS public API key
+})();
+
 let submitBtn = document.getElementById("submitBtn");
+
 submitBtn.addEventListener("click", function () {
-	let name = document.getElementById("name");
-	let email = document.getElementById("email");
-	let subject = document.getElementById("subject");
-	let message = document.getElementById("message");
+	let name = document.getElementById("name").value;
+	let email = document.getElementById("email").value;
+	let subject = document.getElementById("subject").value;
+	let message = document.getElementById("message").value;
 
-	if (
-		name.value &&
-		email.value.includes("@gmail.com") &&
-		subject.value &&
-		message.value
-	) {
-		addDataToDatabase(name.value, email.value, subject.value, message.value);
-		name.value = "";
-		email.value = "";
-		subject.value = "";
-		message.value = "";
+	// Validate input
+	if (name && email.includes("@gmail.com") && subject && message) {
+		// Call function to add data to database (existing function)
+		addDataToDatabase(name, email, subject, message);
 
-		alert(
-			"Your Message has been Sent to Mr. Khadim Hussain !\nHe Will respond you ASAP!"
-		);
+		// Send email using EmailJS
+		emailjs
+			.send("service_j1wl7ye", "template_oncbsil", {
+				from_name: name,
+				from_email: email, // Include sender's email
+				subject: subject, // Include subject
+				message: message,
+			})
+			.then(
+				(response) => {
+					console.log(
+						"Email sent successfully!",
+						response.status,
+						response.text
+					);
+					// Clear input fields
+					document.getElementById("name").value = "";
+					document.getElementById("email").value = "";
+					document.getElementById("subject").value = "";
+					document.getElementById("message").value = "";
+					alert("Your message has been sent to MR. Khadim Hussain! He will respond ASAP!");
+				},
+				(error) => {
+					alert("Failed to send email:", error);
+				}
+			);
+	} else {
+		alert("Please fill out all fields correctly.");
 	}
 });
+
+
 async function addDataToDatabase(name, email, subject, message) {
 	let ref = collection(db, "Messages");
 	const docRef = await addDoc(ref, {
