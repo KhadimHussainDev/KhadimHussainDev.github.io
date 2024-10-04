@@ -104,6 +104,7 @@ submitBtn.addEventListener("click", function () {
 				from_email: email, // Include sender's email
 				subject: subject, // Include subject
 				message: message,
+				to_name: "Khadim Hussain"
 			})
 			.then(
 				(response) => {
